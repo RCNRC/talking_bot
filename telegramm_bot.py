@@ -1,5 +1,4 @@
 import signal
-import sys
 from dotenv import dotenv_values
 from telegram import Update
 from telegram.ext import (
@@ -10,15 +9,11 @@ from telegram.ext import (
     Filters,
 )
 
-from diagflow_tools import detect_intent_texts, create_api_key
+from tools.diagflow_tools import detect_intent_texts, create_api_key
+from tools.common_tools import signal_handler
 
 
 CLOUD_PROJECT_ID = dotenv_values()['PROJECT_ID']
-
-
-def signal_handler(sig, frame):
-    print('Bot stoped')
-    sys.exit(0)
 
 
 def start(update: Update, context: CallbackContext):
