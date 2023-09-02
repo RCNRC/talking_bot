@@ -15,18 +15,19 @@ CLOUD_PROJECT_ID = dotenv_values()['PROJECT_ID']
 def echo(event, vk_api):
     text = ''
     try:
-        text = detect_intent_texts(
+        text, is_fallback = detect_intent_texts(
             CLOUD_PROJECT_ID,
             event.user_id,
             event.text,
         )
     except Exception:
         text = 'Произошла ошибка при посылке сообщения сервису.'
-    vk_api.messages.send(
-        user_id=event.user_id,
-        message=text,
-        random_id=random.randint(1, 1000)
-    )
+    if not is_fallback:
+        vk_api.messages.send(
+            user_id=event.user_id,
+            message=text,
+            random_id=random.randint(1, 1000)
+        )
 
 
 def main():

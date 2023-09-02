@@ -26,7 +26,7 @@ def start(update: Update, context: CallbackContext):
 def echo(update: Update, context: CallbackContext):
     text = ''
     try:
-        text = detect_intent_texts(
+        text, _ = detect_intent_texts(
             CLOUD_PROJECT_ID,
             update.effective_chat.id,
             update.message.text,
