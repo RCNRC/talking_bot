@@ -1,6 +1,10 @@
 # talking_bot
 
-Боты для Vk и Telegram, проводящие общение с сервисом Dialogflow Essentials.
+Боты для Vk и Telegram, проводящие общение с сервисом Dialogflow Essentials. Запущенный [бот для telegram](https://t.me/talking_dialogflow_crnrc_bot). Запущенный [бот для vk сообщества](https://vk.com/club218407797).
+
+Примеры работающих ботов:
+![Telegram bot example](docs/demo_tg_bot.gif)
+![Vk bot example](docs/demo_vk_bot.gif)
 
 ## Установка и подготовка
 
