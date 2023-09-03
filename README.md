@@ -21,10 +21,32 @@
    - Если не знаете ваш "id", воспользуйтесь специальным [ботом](https://telegram.me/userinfobot).
 11. Создайте [проект Dialogflow](https://dialogflow.cloud.google.com/#/getStarted). По итогу вы должны получить ID проекта `project_id`.
 12. В файл `.env` добавить строку `PROJECT_ID=project_id`, где `project_id` - ID проекта, полученный на шаге 11.
-13. Пройдите все [пункты по подключению API от Dialogflow](https://cloud.google.com/dialogflow/es/docs/quick/setup) на вашем сервере. По итогу на вашем сервере должны быть установлен файл конфигурации для вашего проекта от Dialogflow, обязательно скопируйте абсолютный путь к этому файлу.
+13. Пройдите все [пункты по подключению API от Dialogflow](https://cloud.google.com/dialogflow/es/docs/quick/setup) на вашем сервере. По итогу при прохождении [последнего шага](https://cloud.google.com/dialogflow/es/docs/quick/setup#client-library-user-account-authentication) на вашем сервере должны быть установлен файл конфигурации для вашего проекта от Dialogflow, обязательно скопируйте абсолютный путь к этому файлу.
 14. В файл `.env` добавить строку `GOOGLE_APPLICATION_CREDENTIALS=/path/to/config/.config/gcloud/application_default_credentials.json`, где после равенства укажите путь к конфигурационному файлу, полученному на шаге 13.
 
 ## Запуск
 
 Telegram бот: `python3 telegram_bot.py`  
 Vk бот: `python3 vk_bot.py`
+
+## Дополнительные опции
+
+Автоматическое создание простых [intents](https://cloud.google.com/dialogflow/es/docs/intents-overview) в Dialogflow по типу вопрос-ответ:
+1. Выполните команду `python3 tools/dialogflow_tools.py path/to/questions/file.json`, где `path/to/questions/file.json` - путь до .json файла со следующей структурой (поля `questions` и `answer` могут быть как одной строкой, так и массивом строк):
+```json
+{
+    "intent_name": {
+        "questions": [
+            "question_1",
+            "question_2",
+            "question_3",
+            ...
+            "question_n"
+        ],
+        "answer": "answer_1"
+    },
+    ...
+}
+```
+
+[Пример заполненного файла .json](./examples/questions.json).
