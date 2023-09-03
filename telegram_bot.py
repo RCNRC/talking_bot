@@ -40,7 +40,6 @@ def echo(update: Update, context: CallbackContext):
     except Exception as exception:
         text = 'Произошла ошибка при посылке сообщения сервису.'
         LOGGER.error(exception)
-    a = 1/0
     context.bot.send_message(
         chat_id=update.effective_chat.id,
         text=text,
