@@ -27,6 +27,7 @@
 12. В файл `.env` добавить строку `PROJECT_ID=project_id`, где `project_id` - ID проекта, полученный на шаге 11.
 13. Пройдите все [пункты по подключению API от Dialogflow](https://cloud.google.com/dialogflow/es/docs/quick/setup) на вашем сервере. По итогу при прохождении [последнего шага](https://cloud.google.com/dialogflow/es/docs/quick/setup#client-library-user-account-authentication) на вашем сервере должны быть установлен файл конфигурации для вашего проекта от Dialogflow, обязательно скопируйте абсолютный путь к этому файлу.
 14. В файл `.env` добавить строку `GOOGLE_APPLICATION_CREDENTIALS=/path/to/config/.config/gcloud/application_default_credentials.json`, где после равенства укажите путь к конфигурационному файлу, полученному на шаге 13.
+15. Создайте апи ключ выполнив команду `python3 tools/dialogflow_tools.py -k`.
 
 ## Запуск
 

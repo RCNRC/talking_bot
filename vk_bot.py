@@ -6,7 +6,7 @@ from dotenv import dotenv_values
 from vk_api import VkApi
 from vk_api.longpoll import VkLongPoll, VkEventType
 
-from tools.dialogflow_tools import create_api_key, detect_intent_texts
+from tools.dialogflow_tools import detect_intent_texts
 from tools.logger import LogsHandler
 
 

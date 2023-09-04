@@ -19,16 +19,24 @@ def initialize_arg_parser():
         type=str,
         help='file .json with intets',
     )
+    parser.add_argument(
+        '-k',
+        '--key',
+        help='creates dialogflow api key for current environment' +
+             ' for project which name set in .env',
+        action='store_true',
+    )
     return parser
 
 
 def create_api_key(project_id: str) -> Key:
     """
-    Creates and restrict an API key. Add the suffix for uniqueness.
+    Creates and restrict an API key.
 
     TODO(Developer):
     1. Before running this sample,
-      set up ADC as described in https://cloud.google.com/docs/authentication/external/set-up-adc
+      set up ADC as described in
+      https://cloud.google.com/docs/authentication/external/set-up-adc
     2. Make sure you have the necessary permission to create API keys.
 
     Args:
@@ -54,7 +62,12 @@ def create_api_key(project_id: str) -> Key:
     return response
 
 
-def detect_intent_texts(project_id, session_id, text, language_code='ru') -> (str, bool):
+def detect_intent_texts(
+        project_id,
+        session_id,
+        text,
+        language_code='ru',
+        ) -> (str, bool):
     """Returns the result of detect intent with texts as inputs.
     Using the same `session_id` between requests allows continuation
     of the conversation.
@@ -141,6 +154,8 @@ def main():
                 phrases,
                 answers,
             )
+    elif args.key:
+        create_api_key(CLOUD_PROJECT_ID)
 
 
 if __name__ == '__main__':

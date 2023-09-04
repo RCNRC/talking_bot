@@ -1,5 +1,4 @@
 import logging
-import sys
 import traceback
 from dotenv import dotenv_values
 from telegram import Update
@@ -12,7 +11,7 @@ from telegram.ext import (
     Filters,
 )
 
-from tools.dialogflow_tools import detect_intent_texts, create_api_key
+from tools.dialogflow_tools import detect_intent_texts
 from tools.logger import LogsHandler
 
 
