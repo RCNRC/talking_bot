@@ -2,8 +2,6 @@ import logging
 
 import telegram
 
-logger = logging.getLogger('bots logger')
-
 
 class LogsHandler(logging.Handler):
 

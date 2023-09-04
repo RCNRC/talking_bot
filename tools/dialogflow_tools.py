@@ -118,10 +118,10 @@ def create_intent(
 
 
 def get_question_intents(file: str) -> (str, list[str], list[str]):
-    with open(file, "r", encoding='utf-8') as my_file:
-        capitals_json = my_file.read()
+    with open(file, "r", encoding='utf-8') as file:
+        intensts_json = file.read()
 
-    intents = json.loads(capitals_json)
+    intents = json.loads(intensts_json)
     for name, intent_content in intents.items():
         if not isinstance(intent_content['questions'], list):
             intent_content['questions'] = [intent_content['questions']]

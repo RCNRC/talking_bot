@@ -15,7 +15,6 @@ LOGGER = logging.getLogger('Vk bot logger')
 
 
 def echo(event, vk_api):
-    text = ''
     try:
         text, is_fallback = detect_intent_texts(
             CLOUD_PROJECT_ID,
@@ -52,7 +51,6 @@ def main():
     LOGGER.addHandler(handler)
 
     try:
-        create_api_key(CLOUD_PROJECT_ID)
         vk_session = VkApi(token=dotenv_values()['VK_BOT_API_TOKEN'])
         vk_api = vk_session.get_api()
         longpoll = VkLongPoll(vk_session)

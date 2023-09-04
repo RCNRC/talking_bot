@@ -18,7 +18,6 @@ from tools.logger import LogsHandler
 
 CLOUD_PROJECT_ID = dotenv_values()['PROJECT_ID']
 LOGGER = logging.getLogger('Telegram bot logger')
-logger = logging.getLogger(LOGGER.name) 
 
 
 def start(update: Update, context: CallbackContext):
@@ -29,7 +28,6 @@ def start(update: Update, context: CallbackContext):
 
 
 def echo(update: Update, context: CallbackContext):
-    text = ''
     try:
         text, _ = detect_intent_texts(
             CLOUD_PROJECT_ID,
@@ -74,24 +72,16 @@ def main():
 
     LOGGER.addHandler(handler)
 
-    try:
-        create_api_key(CLOUD_PROJECT_ID)
-
-        bot_telegramm_api_token = dotenv_values()['TELEGRAM_BOT_API_TOKEN']
-        bot = telegram.Bot(token=bot_telegramm_api_token)
-        updater = Updater(bot=bot)
-        dispatcher = updater.dispatcher
-        dispatcher.add_handler(CommandHandler('start', start))
-        dispatcher.add_handler(
-            MessageHandler(Filters.text & (~Filters.command), echo)
-        )
-        dispatcher.add_error_handler(error_handler)
-        updater.start_polling()
-    except KeyboardInterrupt:
-        LOGGER.info('Bot ended work.')
-        sys.exit(0)
-    except Exception as exception:
-        LOGGER.error(exception)
+    bot_telegramm_api_token = dotenv_values()['TELEGRAM_BOT_API_TOKEN']
+    bot = telegram.Bot(token=bot_telegramm_api_token)
+    updater = Updater(bot=bot)
+    dispatcher = updater.dispatcher
+    dispatcher.add_handler(CommandHandler('start', start))
+    dispatcher.add_handler(
+        MessageHandler(Filters.text & (~Filters.command), echo)
+    )
+    dispatcher.add_error_handler(error_handler)
+    updater.start_polling()
 
 
 if __name__ == '__main__':
