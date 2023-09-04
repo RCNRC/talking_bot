@@ -27,14 +27,13 @@ def start(update: Update, context: CallbackContext):
     )
 
 
-def echo(update: Update, context: CallbackContext):
+def talk_to_dialogflow(update: Update, context: CallbackContext):
     try:
         text, _ = detect_intent_texts(
             CLOUD_PROJECT_ID,
             update.effective_chat.id,
             update.message.text,
         )
-
     except Exception as exception:
         text = 'Произошла ошибка при посылке сообщения сервису.'
         LOGGER.error(exception)
@@ -78,7 +77,7 @@ def main():
     dispatcher = updater.dispatcher
     dispatcher.add_handler(CommandHandler('start', start))
     dispatcher.add_handler(
-        MessageHandler(Filters.text & (~Filters.command), echo)
+        MessageHandler(Filters.text & (~Filters.command), talk_to_dialogflow)
     )
     dispatcher.add_error_handler(error_handler)
     updater.start_polling()

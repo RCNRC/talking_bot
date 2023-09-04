@@ -14,7 +14,7 @@ CLOUD_PROJECT_ID = dotenv_values()['PROJECT_ID']
 LOGGER = logging.getLogger('Vk bot logger')
 
 
-def echo(event, vk_api):
+def talk_to_dialogflow(event, vk_api):
     try:
         text, is_fallback = detect_intent_texts(
             CLOUD_PROJECT_ID,
@@ -56,7 +56,7 @@ def main():
         longpoll = VkLongPoll(vk_session)
         for event in longpoll.listen():
             if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-                echo(event, vk_api)
+                talk_to_dialogflow(event, vk_api)
     except KeyboardInterrupt:
         LOGGER.info('Bot ended work.')
         sys.exit(0)
