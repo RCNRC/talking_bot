@@ -27,15 +27,11 @@ def start(update: Update, context: CallbackContext):
 
 
 def talk_to_dialogflow(update: Update, context: CallbackContext):
-    try:
-        text, _ = detect_intent_texts(
-            CLOUD_PROJECT_ID,
-            update.effective_chat.id,
-            update.message.text,
-        )
-    except Exception as exception:
-        text = 'Произошла ошибка при посылке сообщения сервису.'
-        LOGGER.error(exception)
+    text, _ = detect_intent_texts(
+        CLOUD_PROJECT_ID,
+        update.effective_chat.id,
+        update.message.text,
+    )
     context.bot.send_message(
         chat_id=update.effective_chat.id,
         text=text,

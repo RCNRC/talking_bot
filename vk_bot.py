@@ -15,15 +15,11 @@ LOGGER = logging.getLogger('Vk bot logger')
 
 
 def talk_to_dialogflow(event, vk_api):
-    try:
-        text, is_fallback = detect_intent_texts(
-            CLOUD_PROJECT_ID,
-            event.user_id,
-            event.text,
-        )
-    except Exception as exception:
-        text = 'Произошла ошибка при посылке сообщения сервису.'
-        LOGGER.exception(exception)
+    text, is_fallback = detect_intent_texts(
+        CLOUD_PROJECT_ID,
+        event.user_id,
+        event.text,
+    )
     if not is_fallback:
         vk_api.messages.send(
             user_id=event.user_id,
